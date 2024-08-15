@@ -91,6 +91,27 @@ The extracted information is appended to a list called `fighters`, which is fina
 
 
 
+### 4. `scrape_upcoming_events()`
+
+This function scrapes data for upcoming UFC events:
+-Defines the URL for the upcoming UFC events page.
+-Sends a GET request to that URL using requests.get.
+    -If the request is successful (status code 200), it proceeds.
+    -If not, it handles the error appropriately.
+It uses BeautifulSoup to parse the HTML content of the response and finds the section containing upcoming events using a specific class name:
+
+Extracts event details from each entry:
+-Event name (using text.strip() to remove whitespace)
+-Date (using text.strip())
+-Location (using text.strip())
+-For each event, it constructs a link URL by formatting the event name (likely replacing spaces with hyphens and converting to lowercase). It creates a dictionary for each event containing:
+   -Name
+   -Date
+   -Location
+   -Link
+
+All event dictionaries are appended to a list called upcoming_fights, which is finally returned as a list of dictionaries containing the details of upcoming events.
+
 
 
 
