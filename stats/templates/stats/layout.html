@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UFC Stats</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sternbach:wght@400;700&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <a href="{% url 'home' %}">
+        <img src="http://1e49bc5171d173577ecd-1323f4090557a33db01577564f60846c.r80.cf1.rackcdn.com/ufc-stats-logo.png" alt="UFC Stats Logo" style="padding-top:35px">
+    </a>
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>

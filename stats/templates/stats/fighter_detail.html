@@ -1,0 +1,113 @@
+{% extends "stats/layout.html" %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <style>
+        li {
+            color: red;
+            margin-bottom: 10px;
+        }
+        .athlete_title{
+            font-family: UfcSansCondensedMedium, "Arial Narrow", Arial, sans-serif;
+            color:red;
+        }
+        hr {
+            border: 1px solid black; /* Adds a black border */
+            width: 100%; /* Makes the hr span the full width */
+        }
+    </style>
+    <div class="box">
+        <h1>
+            {{ fighter.first_name }} 
+            {% if fighter.nickname %}
+                <strong>"{{ fighter.nickname }}"</strong> 
+            {% endif %} 
+            {{ fighter.last_name }}
+        </h1>
+        <br>
+
+
+
+        <h2 class="athlete-title">Info</h2>
+        <hr>
+        
+
+        <ul>
+            {% if fighter.status%}
+                <li>STATUS: {{ fighter.status|upper }}</li>
+            {% endif %}
+            {% if fighter.height %}
+                <li>HEIGHT: {{ fighter.height|upper }} INCHES</li>
+            {% endif %}
+            {% if fighter.weight %}
+                <li>WEIGHT: {{ fighter.weight|upper }} POUNDS</li>
+            {% endif %}
+            {% if fighter.age %}
+                <li>AGE: {{ fighter.age|upper }}</li>
+            {% endif %}
+            {% if fighter.place_of_birth %}
+                <li>PLACE OF BIRTH: {{ fighter.place_of_birth|upper }}</li>
+            {% endif %}
+            {% if fighter.octagon_debut %}
+                <li>OCTAGON DEBUT: {{ fighter.octagon_debut|upper }}</li>
+            {% endif %}
+            {% if fighter.reach %}
+                <li>REACH: {{ fighter.reach|upper }} INCHES</li>
+            {% endif %}
+            {% if fighter.leg_reach %}
+                <li>LEG REACH: {{ fighter.leg_reach|upper }} INCHES</li>
+            {% endif %}
+            {% if fighter.wins_by_knockout %}
+                <li>{{ fighter.wins_by_knockout|upper }} WINS BY KNOCKOUT</li>
+            {% endif %}
+            {% if fighter.first_round_finishes %}
+                <li>{{ fighter.first_round_finishes|upper }} FIRST ROUND FINISHES</li>
+            {% endif %}
+            {% if fighter.wins_by_submission %}
+                <li>{{ fighter.wins_by_submission|upper }} WINS BY SUBMISSION</li>
+            {% endif %}
+            {% if fighter.fight_win_streak %}
+                <li>{{ fighter.wins_by_submission|upper }} WINSTREAK</li>
+            {% endif %}
+            {% if fighter.striking_accuracy %}
+                <li>{{ fighter.striking_accuracy|upper }} STRIKING ACCURACY</li>
+            {% endif %}
+            {% if fighter.sig_strikes_landed %}
+                <li>{{ fighter.sig_strikes_landed|upper }} SIGNIFICANT STRIKES LANDED</li>
+            {% endif %}
+            {% if fighter.sig_strikes_attempted %}
+                <li>{{ fighter.sig_strikes_attempted|upper }} SIGNIFICANT STRIKES ATTEMPTED</li>
+            {% endif %}
+            {% if fighter.takedowns_landed %}
+                <li>{{ fighter.takedowns_landed|upper }} TAKEDOWNS LANDED</li>
+            {% endif %}
+            {% if fighter.takedowns_attempted %}
+                <li>{{ fighter.takedowns_attempted|upper }} TAKEDOWNS ATTEMPTED</li>
+            {% endif %}
+            {% if fighter.sig_str_landed %}
+                <li>{{ fighter.sig_str_landed.split.0 }} SIG. STR. LANDED {{ fighter.sig_str_landed.split.1|upper }} {{ fighter.sig_str_landed.split.2|upper }}</li>
+            {% endif %}
+            {% if fighter.sig_str_absorbed %}
+                <li>{{ fighter.sig_str_absorbed.split.0 }} SIG. STR. ABSORBED {{ fighter.sig_str_absorbed.split.1|upper }} {{ fighter.sig_str_absorbed.split.2|upper }}</li>
+            {% endif %}
+            {% if fighter.takedown_avg %}
+                <li>{{ fighter.takedown_avg.split.0 }} TAKEDOWN AVG {{ fighter.takedown_avg.split.1|upper }} {{ fighter.takedown_avg.split.2|upper }} {{ fighter.takedown_avg.split.3|upper }}</li>
+            {% endif %}
+            {% if fighter.submission_avg %}
+                <li>{{ fighter.submission_avg.split.0 }} SUBMISSION AVG {{ fighter.submission_avg.split.1|upper }} {{ fighter.submission_avg.split.2|upper }} {{ fighter.submission_avg.split.3|upper }}</li>
+            {% endif %}
+            {% if fighter.sig_str_defense %}
+                <li>{{ fighter.submission_avg|upper }} SIG. STR. DEFENSE</li>
+            {% endif %}
+            {% if fighter.takedown_defense %}
+                <li>{{ fighter.takedown_defense|upper }} TAKEDOWN DEFENSE</li>
+            {% endif %}
+            {% if fighter.knockdown_avg %}
+                <li>{{ fighter.knockdown_avg|upper }} KNOCKDOWN AVG</li>
+            {% endif %}
+            {% if fighter.average_fight_time %}
+                <li>{{ fighter.average_fight_time|upper }} AVERAGE FIGHT TIME</li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock content %}
