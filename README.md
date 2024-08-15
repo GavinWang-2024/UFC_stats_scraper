@@ -89,8 +89,6 @@ BeautifulSoup is used to parse the HTML content, and it finds the section contai
 
 The extracted information is appended to a list called `fighters`, which is finally returned as a list of dictionaries containing fighter details.
 
-
-
 ### 4. `scrape_upcoming_events()`
 
 This function scrapes data for upcoming UFC events:
@@ -112,7 +110,47 @@ Extracts event details from each entry:
 
 All event dictionaries are appended to a list called upcoming_fights, which is finally returned as a list of dictionaries containing the details of upcoming events.
 
+### 5. `search_fighter(request)`
 
+- Handles the search functionality for finding fighters based on user input.
+- Extracts the search query from request parameters using `request.GET.get('query', '')`.
+- Returns an error response (HTTP 400) if no query is provided.
+- Retrieves a list of all fighters using the `all_fighters()` function.
+- Splits the search query into lowercase search terms and filters the fighters by first name, last name, or nickname.
+- Returns a not found response (HTTP 404) if no fighters are found.
+- Constructs a UFC URL for each found fighter.
+- Renders the `stats/search_results.html` template with the list of found fighters and the search query.
+
+### 6. `scrape_fighter_stats(ufc_url)`
+
+- Scrapes detailed statistics for a specific fighter from the UFC website.
+- Accepts the fighter's UFC URL as input.
+- Sends a GET request to the URL using `requests.get`.
+- Uses BeautifulSoup to parse the HTML content of the response.
+- Extracts personal information, fight record statistics, striking accuracy, and other metrics.
+- Stores the extracted statistics in a dictionary and returns it.
+
+### 7. `fighter_detail(request, first_name, last_name)`
+
+- Handles the display of a specific fighter's details.
+- Retrieves a list of all fighters using the `all_fighters()` function.
+- Searches for the fighter matching the provided first and last name (case-insensitive).
+- Returns a not found response (HTTP 404) if the fighter is not found.
+- Constructs the fighter's UFC URL and retrieves detailed statistics using `scrape_fighter_stats`.
+- Combines basic information with the scraped statistics.
+- Renders the `stats/fighter_detail.html` template, passing the fighter's data as context.
+
+### 8. `display_events(request)`
+
+- Displays a list of all past UFC events.
+- Retrieves a list of all events using the `all_events()` function.
+- Renders the `stats/all_events.html` template with the list of events.
+
+### 9. `home(request)`
+
+- Handles the homepage view.
+- Scrapes upcoming fights using the `scrape_upcoming_events()` function.
+- Renders the `stats/home.html` template, passing the list of upcoming fights as context.
 
 
 
