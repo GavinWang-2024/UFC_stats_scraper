@@ -41,18 +41,18 @@ urlpatterns=[
 
 ### 1. `format_event_name(event_name, date_str)`
 
-This function formats the event name and date string as follows:
+Formats the event name and date string as follows:
 - Removes extra spaces and converts the name to lowercase.
 - Replaces spaces with hyphens.
 - Removes colons from the name.
 
 If the event name contains "ufc-fight-night":
-- It attempts to extract the date portion using regular expressions and formats it consistently (e.g., "October-06-2024").
-- If date extraction fails, it sets the date to "unknown-date".
+- Attempts to extract the date portion using regular expressions and formats it consistently (e.g., "October-06-2024").
+- Date extraction fails, it sets the date to "unknown-date".
 
 The function checks the length of the formatted name:
-- If it contains more than two parts, it joins the first two parts with a hyphen.
-- If it contains fewer than two parts, it retains the remaining part.
+- Contains more than two parts, it joins the first two parts with a hyphen.
+- Contains fewer than two parts, it retains the remaining part.
 
 Finally, it returns the formatted event name with the date appended using a hyphen (e.g., `ufc-fight-night-october-06-2024`).
 
@@ -65,7 +65,7 @@ This function scrapes data for all past UFC events:
   - If the request is successful (status code 200), it proceeds.
   - If unsuccessful, it continues to the next page.
 
-It uses BeautifulSoup to parse the HTML content and finds the section containing event entries:
+Uses BeautifulSoup to parse the HTML content and finds the section containing event entries:
 - Extracts event details, including:
   - Event name (using `text.strip()` to remove whitespace)
   - Date
@@ -75,11 +75,11 @@ The extracted information is appended to a list called `events_data`, which is r
 
 ### 3. `all_fighters()`
 
-This function scrapes data for all UFC fighters listed alphabetically:
+Scrapes data for all UFC fighters listed alphabetically:
 - Defines a base URL for the UFC fighter statistics page with a placeholder for the starting letter.
 - Iterates through letters (a-z) using a loop, constructing the URL for each letter.
 - Sends a GET request to each URL.
-  - If the request is successful, it proceeds; otherwise, it continues to the next letter.
+  - If the request is successful, proceeds; otherwise, continues to the next letter.
 
 BeautifulSoup is used to parse the HTML content, and it finds the section containing fighter entries:
 - Extracts fighter details, including:
@@ -91,18 +91,18 @@ The extracted information is appended to a list called `fighters`, which is fina
 
 ### 4. `scrape_upcoming_events()`
 
-This function scrapes data for upcoming UFC events:
+Scrapes data for upcoming UFC events:
 -Defines the URL for the upcoming UFC events page.
 -Sends a GET request to that URL using requests.get.
     -If the request is successful (status code 200), it proceeds.
     -If not, it handles the error appropriately.
-It uses BeautifulSoup to parse the HTML content of the response and finds the section containing upcoming events using a specific class name:
+Uses BeautifulSoup to parse the HTML content of the response and finds the section containing upcoming events using a specific class name:
 
 Extracts event details from each entry:
 -Event name (using text.strip() to remove whitespace)
 -Date (using text.strip())
 -Location (using text.strip())
--For each event, it constructs a link URL by formatting the event name (likely replacing spaces with hyphens and converting to lowercase). It creates a dictionary for each event containing:
+-For each event, constructs a link URL by formatting the event name (likely replacing spaces with hyphens and converting to lowercase). It creates a dictionary for each event containing:
    -Name
    -Date
    -Location
